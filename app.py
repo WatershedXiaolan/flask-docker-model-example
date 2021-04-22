@@ -8,7 +8,7 @@ model = pickle.load(open('pretrained/my_model.pkl','rb'))
 
 @app.route('/')
 def home():
-    return render_template('page.html')
+    return render_template('home.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -17,7 +17,7 @@ def predict():
     predict_outcome_list = model.predict(features)
     predict_outcome = round(predict_outcome_list[0],2)
 
-    return render_template('page.html',prediction_display_area='Predicted value：{}'.format(predict_outcome))
+    return render_template('home.html',prediction_display_area='Predicted value：{}'.format(predict_outcome))
 
 if __name__ == "__main__":
     http_server = WSGIServer(('0.0.0.0', 5000), app)
